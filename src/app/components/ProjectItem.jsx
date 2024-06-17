@@ -20,13 +20,13 @@ function ProjectItem({ pTitle, pD1, pD2, pD3, pGithub, pLive, pImage, tech }) {
   }, [controls, inView]);
 
   return (
-    <div ref={ref} className="w-[90%] gap-10 flex flex-col md:flex-row lg:flex-row justify-center items-center">
-      <div className="relative flex w-full flex-col items-start lg:row-span-5 space-y-5">
+    <div ref={ref} className="w-full gap-10 grid grid-rows-1 md:grid-cols-2 lg:grid-cols-2 place-content-center place-items-center">
+      <div className="flex w-full flex-col space-y-5 text-justify">
         <div className="space-y-3">
           <h3 className="text-2xl font-[700] text-primary-blue">{pTitle}</h3>
-          <p className="text-lg text-gray-300">&#8227; {pD1}</p>
-          <p className="text-lg text-gray-300">&#8227; {pD2}</p>
-          {pD3 && <p className="text-lg text-gray-300">&#8227; {pD3}</p>}
+          <p className="text-sm md:text-md lg:text-lg text-gray-300">&#8227; {pD1}</p>
+          <p className="text-sm md:text-md lg:text-lg text-gray-300">&#8227; {pD2}</p>
+          {pD3 && <p className="text-sm md:text-md lg:text-lg text-gray-300">&#8227; {pD3}</p>}
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-primary-blue italic">{tech}</p>
@@ -43,7 +43,7 @@ function ProjectItem({ pTitle, pD1, pD2, pD3, pGithub, pLive, pImage, tech }) {
       <motion.div
         initial={{ filter: "blur(10px)", opacity: 0 }}
         animate={controls}
-        className="flex w-[18em] md:w-[35em] lg:w-[50em] rounded-lg justify-end transition-all duration-700 ease-in-out"
+        className="w-[90%] rounded-lg transition-all duration-700 ease-in-out"
       >
         <Image
           src={pImage}

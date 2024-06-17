@@ -127,7 +127,7 @@ function Projects() {
         <h3 className="text-3xl font-[800] text-white sm:text-5xl">Projects</h3>
         <div className="mt-2 h-[4px] min-w-0 flex-grow bg-white"></div>
       </div>
-      <div className="flex flex-col gap-10 py-[80px] items-center justify-center">
+      <div className="grid grid-cols-1 gap-10 py-[80px]">
         {displayedProjects.map((project, index) => (
           <motion.div
             key={index}

@@ -21,13 +21,13 @@ const ExpComponent = ({
         <h2 className="text-white text-3xl text-semibold">{title}</h2>
       </div>
       <div className="flex justify-between">
-        <p className="text-primary-blue">{company}</p>
-        <p className="text-primary-blue">{dateComp}</p>
+        <p className="text-sm md:text-md lg:text-lg text-primary-blue">{company}</p>
+        <p className="text-sm md:text-md lg:text-lg text-primary-blue">{dateComp}</p>
       </div>
       <div className="mt-3">
-        <p className="list-disc">&#8227; {description1}</p>
-        <p className="list-disc">&#8227; {description2}</p>
-        { description3 && <p className="list-disc">&#8227; {description3}</p> }
+        <p className="text-sm md:text-md lg:text-lg list-disc">&#8227; {description1}</p>
+        <p className="text-sm md:text-md lg:text-lg list-disc">&#8227; {description2}</p>
+        { description3 && <p className="text-sm md:text-md lg:text-lg list-disc">&#8227; {description3}</p> }
       </div>
     </div>
   );
