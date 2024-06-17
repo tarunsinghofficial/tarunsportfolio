@@ -7,8 +7,8 @@ import emailjs from "emailjs-com";
 
 function Contact() {
   const [formData, setFormData] = useState({
-    user_name: "",
     user_email: "",
+    user_name: "",
     user_message: "",
   });
 
@@ -133,7 +133,7 @@ function Contact() {
                 required
                 className="block w-full rounded-lg border border-[#33353F] bg-[#18191E] p-2.5 text-sm text-gray-100 placeholder-[#9CA2A9]"
                 placeholder="John Doe"
-                name="user_subject"
+                name="user_name"
                 value={formData.user_name}
                 onChange={handleChange}
               />
