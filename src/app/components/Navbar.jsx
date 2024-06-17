@@ -4,6 +4,7 @@ import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { LuMailOpen } from "react-icons/lu";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +13,14 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  const menuVariants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: { opacity: 1, height: "auto" },
+  };
+
   return (
-    <nav className="bg-inherit sticky left-0 top-0 z-[100] py-5 px-5 container mx-auto">
-      <div className="flex flex-row justify-between items-center">
+    <nav className="w-full bg-inherit sticky left-0 top-0 z-[100] py-5 px-5">
+      <div className="flex flex-row justify-between items-center container mx-auto">
         <div>
           <a href="#" className="hover:cursor-pointer">
             <h2 className="text-2xl text-white font-semibold">@Tarun Singh</h2>
@@ -78,59 +84,67 @@ function Navbar() {
           </button>
         </div>
       </div>
-      {isOpen && (
-        <div className="md:hidden flex flex-col items-center bg-inherit bg-opacity-75 w-full mt-4 space-y-4 py-5">
-          {[
-            "about",
-            "experience",
-            "skills",
-            "projects",
-            "research",
-            "blog",
-            "contact",
-          ].map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              className="text-white text-lg font-medium"
-              onClick={toggleMenu}
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </a>
-          ))}
-          <hr className="text-white w-full h-[0.8px]" />
-          <div className="flex gap-5">
-            <a
-              target="_blank"
-              className="hover:cursor-pointer hover:translate-y-[-3px] duration-300"
-              href="https://www.linkedin.com/in/tarunsingh24"
-            >
-              <FaLinkedin size={25} />
-            </a>
-            <a
-              target="_blank"
-              className="hover:cursor-pointer hover:translate-y-[-3px] duration-300"
-              href="https://github.com/tarunsinghofficial"
-            >
-              <FaGithub size={25} />
-            </a>
-            <a
-              target="_blank"
-              className="hover:cursor-pointer hover:translate-y-[-3px] duration-300"
-              href="https://twitter.com/itsTarun24"
-            >
-              <FaXTwitter size={25} />
-            </a>
-            <a
-              target="_blank"
-              className="hover:cursor-pointer hover:translate-y-[-3px] duration-300"
-              href="mailto:tarunsinghwap7@gmail.com"
-            >
-              <LuMailOpen size={25} />
-            </a>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={menuVariants}
+            className="md:hidden flex flex-col items-center bg-inherit bg-opacity-75 w-full mt-4 space-y-4 py-5"
+          >
+            {[
+              "about",
+              "experience",
+              "skills",
+              "projects",
+              "research",
+              "blog",
+              "contact",
+            ].map((section) => (
+              <a
+                key={section}
+                href={`#${section}`}
+                className="text-white text-lg font-medium"
+                onClick={toggleMenu}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </a>
+            ))}
+            <hr className="text-white w-full h-[0.8px]" />
+            <div className="flex gap-5">
+              <a
+                target="_blank"
+                className="hover:cursor-pointer hover:translate-y-[-3px] duration-300"
+                href="https://www.linkedin.com/in/tarunsingh24"
+              >
+                <FaLinkedin size={25} />
+              </a>
+              <a
+                target="_blank"
+                className="hover:cursor-pointer hover:translate-y-[-3px] duration-300"
+                href="https://github.com/tarunsinghofficial"
+              >
+                <FaGithub size={25} />
+              </a>
+              <a
+                target="_blank"
+                className="hover:cursor-pointer hover:translate-y-[-3px] duration-300"
+                href="https://twitter.com/itsTarun24"
+              >
+                <FaXTwitter size={25} />
+              </a>
+              <a
+                target="_blank"
+                className="hover:cursor-pointer hover:translate-y-[-3px] duration-300"
+                href="mailto:tarunsinghwap7@gmail.com"
+              >
+                <LuMailOpen size={25} />
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
