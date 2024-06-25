@@ -20,9 +20,37 @@ body {
   color: rgb(var(--foreground-rgb));
   background: #121212;
   font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  position: relative; /* Ensure body height affects pseudo-element */
 }
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
+body:before {
+  content: "";
+  position: fixed; /* Position relative to the body */
+  z-index: -1;
+  top: 10%;
+  left: -20%;
+  width: 100%;
+  height: 100%;
+  background-image: url('../app/assets/docs-left.png'), url('../app/assets/docs-right.png');
+  background-position: bottom left, top right;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  opacity: 60%;
+  transform: rotate(12deg); /* Adjust rotation as needed */
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: minmax(100px, auto);
+  gap: 16px;
+}
