@@ -1,9 +1,8 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { LuMailOpen } from "react-icons/lu";
-import emailjs from "emailjs-com";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -11,8 +10,6 @@ function Contact() {
     user_name: "",
     user_message: "",
   });
-
-  const form = useRef();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,24 +22,19 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm(
-        process.env.SERVICE_ID, // Replace with your EmailJS service ID
-        process.env.TEMPLATE_ID, // Replace with your EmailJS template ID
-        form.current,
-        process.env.API_KEY // Replace with your EmailJS public key
-      )
-      .then(
-        (result) => {
-          console.log("SUCCESS!", result.text);
-          alert("Message sent successfully!");
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-          alert("Failed to send the message. Please try again.");
-        }
-      );
+    const { user_email, user_name, user_message } = formData;
 
+    // Create a mailto link
+    const mailtoLink = `mailto:tarunsinghwap7@gmail.com?subject=Message from ${encodeURIComponent(
+      user_name
+    )}&body=${encodeURIComponent(
+      `Name: ${user_name}\nEmail: ${user_email}\n\nMessage:\n${user_message}`
+    )}`;
+
+    // Open the mailto link in the user's default email client
+    window.location.href = mailtoLink;
+
+    // Reset the form
     setFormData({
       user_email: "",
       user_name: "",
@@ -52,7 +44,7 @@ function Contact() {
 
   return (
     <section className="py-[0px] w-[100%] min-w-[100%]">
-      <div className="flex gap-5 items-center">
+      <div className="flex items-center gap-5">
         <h3 className="text-3xl font-[800] text-white sm:text-5xl">
           Get In Touch
         </h3>
@@ -60,7 +52,7 @@ function Contact() {
       </div>
       <div className="flex flex-col md:flex-row lg:flex-row gap-10 mt-[80px] justify-between">
         <div className="w-auto max-w-xl space-y-5">
-          <h2 className="text-2xl text-primary-blue font-bold">
+          <h2 className="text-primary-blue text-2xl font-bold">
             Why Be Shy, Say Hi...
           </h2>
           <p>
@@ -100,12 +92,11 @@ function Contact() {
           </div>
         </div>
         <div className="mt-10 w-full p-4 md:mt-0 md:w-[40%]">
-          {/* when message is successful, say thanks message else show form */}
-          <form ref={form} className="flex flex-col" onSubmit={handleSubmit}>
+          <form className="flex flex-col" onSubmit={handleSubmit}>
             <div className="mb-6">
               <label
                 htmlFor="email"
-                className="mb-2 block text-sm font-medium text-white"
+                className="block mb-2 text-sm font-medium text-white"
               >
                 Your email
               </label>
@@ -123,7 +114,7 @@ function Contact() {
             <div className="mb-6">
               <label
                 htmlFor="subject"
-                className="mb-2 block text-sm font-medium text-white"
+                className="block mb-2 text-sm font-medium text-white"
               >
                 Name
               </label>
@@ -141,7 +132,7 @@ function Contact() {
             <div className="mb-6">
               <label
                 htmlFor="message"
-                className="mb-2 block text-sm font-medium text-white"
+                className="block mb-2 text-sm font-medium text-white"
               >
                 Message
               </label>
