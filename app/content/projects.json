@@ -1,0 +1,25 @@
+[
+  {
+    "title": "AetherLog",
+    "image": "/project-aetherlog.jpg",
+    "stack": ["Go", "Kafka", "Elasticsearch", "Docker", "Kibana"],
+    "description": "Distributed log aggregation with resilient Kafka pipeline and real-time analysis.",
+    "href": "https://github.com/"
+  },
+  {
+    "title": "PixlFlow",
+    "image": "/project-pixlflow.jpg",
+    "stack": ["Next.js", "Express", "AWS", "PostgreSQL"],
+    "description": "Serverless image processing handling 1000+ images/day with <2s latency.",
+    "href": "https://github.com/"
+  },
+  {
+    "title": "FormifyAI",
+    "image": "/project-formifyai.jpg",
+    "stack": ["Next.js", "Gemini", "PostgreSQL", "NeonDB"],
+    "description": "AI form builder cutting creation time by 80% with analytics and exports.",
+    "href": "https://github.com/"
+  }
+]
+
+

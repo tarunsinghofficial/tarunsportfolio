@@ -1,0 +1,17 @@
+{
+  "latest": {
+    "title": "Prompt Engineering Cheat Sheet for GPT-5: Learn These Patterns for Solid Code Generation",
+    "description": "When large language models like ChatGPT first became widely available, a lot of us developers felt like we’d been handed a new superpower. We could use LLMs to help us develop new coding projects, build websites, and much more – just using a few prompts. LLMs were like a tireless, super knowledgeable pair programmer that could conjure code out of thin air. We would type a quick, messy request, and out would pop something that...kind of worked. It was amazing, but also a little frustrating. The code might be buggy, inefficient, or completely miss the subtle context of our project.",
+    "url": "https://www.freecodecamp.org/news/prompt-engineering-cheat-sheet-for-gpt-5/"
+  },
+  "tops": [
+    {
+      "title": "Optimizing AWS Costs for AI Development in 2025",
+      "url": "https://dev.to/tarunsinghofficial/optimizing-aws-costs-for-ai-development-in-2025-8ee"
+    },
+    {
+      "title": "How to Build an AI Study Planner Agent using Gemini in Python",
+      "url": "https://www.freecodecamp.org/news/how-to-build-an-ai-study-planner-agent-using-gemini-in-python/"
+    }
+  ]
+}

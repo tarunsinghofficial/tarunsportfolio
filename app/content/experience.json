@@ -1,0 +1,54 @@
+{
+    "experiences": [
+        {
+            "title": "Software Engineer Intern",
+            "company": "Open Transit Software Foundation",
+            "from": "Jun 2024",
+            "to": "Sep 2024",
+            "location": "Remote (Seattle, US)",
+            "type": "intern"
+        },
+        {
+            "title": "Full-Stack Developer",
+            "company": "GGSIP ACM Student Chapter",
+            "from": "Dec 2023",
+            "to": "June 2025",
+            "location": "Delhi, India",
+            "type": "community"
+        }
+    ],
+    "openSource": [
+        {
+            "title": "Contributor",
+            "company": "GoogleChromeLabs (Chromium)",
+            "from": "2024",
+            "to": "2025",
+            "location": "Open Source",
+            "type": "oss"
+        },
+        {
+            "title": "Contributor",
+            "company": "OneBusAway",
+            "from": "2023",
+            "to": "Present",
+            "location": "Open Source",
+            "type": "oss"
+        },
+        {
+            "title": "Contributor",
+            "company": "Google DeepMind (community repos)",
+            "from": "2025",
+            "to": "2025",
+            "location": "Open Source",
+            "type": "oss"
+        },
+        {
+            "title": "Mentor",
+            "company": "GSSoC Program",
+            "from": "2021",
+            "to": "2023",
+            "location": "Open Source",
+            "type": "oss"
+        }
+    ]
+}
