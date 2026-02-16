@@ -25,6 +25,8 @@ export default function BlogLanding({
     const [searchQuery, setSearchQuery] = useState("");
     const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
 
+    const isFiltering = selectedCategory !== "all" || searchQuery.trim().length > 0;
+
     // Featured post (first featured) and 2 recent posts for hero
     const heroFeatured = featuredPosts[0] || allPosts[0] || null;
     const heroRecent = allPosts.filter((p) => p.slug !== heroFeatured?.slug).slice(0, 2);
@@ -33,9 +35,12 @@ export default function BlogLanding({
     const filteredPosts = useMemo(() => {
         let posts = allPosts;
 
-        // Exclude hero posts from main listing
-        const heroSlugs = new Set([heroFeatured?.slug, ...heroRecent.map((p) => p.slug)]);
-        posts = posts.filter((p) => !heroSlugs.has(p.slug));
+        // Exclude hero posts from main listing only if NOT filtering
+        // If filtering, we hide the hero section, so we should show all matching posts in the list
+        if (!isFiltering) {
+            const heroSlugs = new Set([heroFeatured?.slug, ...heroRecent.map((p) => p.slug)]);
+            posts = posts.filter((p) => !heroSlugs.has(p.slug));
+        }
 
         if (selectedCategory !== "all") {
             posts = posts.filter((p) => p.category === selectedCategory);
@@ -52,7 +57,7 @@ export default function BlogLanding({
         }
 
         return posts;
-    }, [allPosts, selectedCategory, searchQuery, heroFeatured, heroRecent]);
+    }, [allPosts, selectedCategory, searchQuery, heroFeatured, heroRecent, isFiltering]);
 
     const visiblePosts = filteredPosts.slice(0, visibleCount);
     const hasMore = visibleCount < filteredPosts.length;
@@ -60,7 +65,7 @@ export default function BlogLanding({
     return (
         <div className="space-y-10">
             {/* Hero Section */}
-            <BlogHeroSection featured={heroFeatured} recent={heroRecent} />
+            {!isFiltering && <BlogHeroSection featured={heroFeatured} recent={heroRecent} />}
 
             {/* Search + View Toggle */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -121,10 +126,15 @@ export default function BlogLanding({
                     </div>
                 )
             ) : (
-                <div className="text-center py-16">
-                    <p className="text-zinc-500 text-lg">No posts found.</p>
-                    <p className="text-zinc-600 text-sm mt-1">Try a different search or category.</p>
-                </div>
+                // Only show empty state if:
+                // 1. We are filtering (so clearly nothing matched)
+                // 2. OR we are not filtering, but there are NO posts at all (even in hero)
+                (isFiltering || allPosts.length === 0) ? (
+                    <div className="text-center py-16">
+                        <p className="text-zinc-500 text-lg">No posts found.</p>
+                        <p className="text-zinc-600 text-sm mt-1">Try a different search or category.</p>
+                    </div>
+                ) : null
             )}
 
             {/* Load More */}
