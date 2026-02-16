@@ -1,0 +1,67 @@
+---
+title: "Mastering Internationalization in Next.js 14"
+slug: "mastering-i18n-nextjs-14"
+description: "A comprehensive guide to implementing multilingual websites with Next.js 14's App Router, including routing strategies and content management."
+date: "2026-01-05"
+category: "frontend"
+tags: ["Next.js", "i18n", "React", "Web Development"]
+imageURL: "https://cdn.hashnode.com/res/hashnode/image/upload/v1706085037415/b4a0cf1a-1e7a-413b-a3a0-f2987d8cabb6.png"
+featured: false
+---
+
+In the rapidly evolving digital landscape, creating websites that cater to a global audience is not just an option but a necessity. Internationalization (i18n) plays a pivotal role in ensuring your content reaches users worldwide.
+
+## Why Internationalization Matters
+
+If your product serves users across different regions, i18n is essential:
+- **User experience**: People prefer content in their native language
+- **SEO**: Localized content ranks better in regional search results
+- **Market reach**: Opens doors to new demographics
+
+## Next.js 14 App Router Approach
+
+Next.js 14's App Router introduces a clean pattern for i18n using dynamic route segments:
+
+```
+app/
+  [locale]/
+    page.tsx
+    layout.tsx
+    about/
+      page.tsx
+```
+
+Each `[locale]` segment corresponds to a language: `en`, `fr`, `de`, etc.
+
+## Setting Up the Middleware
+
+Use middleware to detect the user's preferred language and redirect accordingly. The middleware checks:
+
+1. URL path for an existing locale prefix
+2. `Accept-Language` header
+3. Cookie with saved preference
+4. Default fallback
+
+## Managing Translations
+
+For translation files, JSON is the most practical format:
+
+```json
+{
+  "hero.title": "Welcome to our platform",
+  "hero.subtitle": "Build something amazing",
+  "nav.home": "Home",
+  "nav.about": "About"
+}
+```
+
+## Best Practices
+
+- **Keep translation keys semantic**: `button.submit` not `btn1`
+- **Handle pluralization**: Most languages have complex plural rules
+- **Format dates and numbers**: Use `Intl` APIs for locale-aware formatting
+- **Test RTL layouts**: Arabic, Hebrew, and other RTL languages need layout adjustments
+
+## Conclusion
+
+Next.js 14 makes internationalization more straightforward than ever. With the App Router's file-based approach, you can build truly global applications with clean, maintainable code.
