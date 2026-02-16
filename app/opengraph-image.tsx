@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export const alt = "Tarun Singh - Full Stack Developer";
 export const size = {
@@ -80,7 +80,7 @@ export default async function Image() {
                         maxWidth: 800,
                     }}
                 >
-                    Full Stack Developer • AI/ML Enthusiast • Open Source
+                    Full Stack Developer • Technical Writer • AI/ML Enthusiast • Open Source
                 </div>
             </div>
         ),
