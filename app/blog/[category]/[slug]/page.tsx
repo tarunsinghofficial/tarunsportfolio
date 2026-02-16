@@ -20,13 +20,47 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-    const { slug } = await params;
+    const { slug, category } = await params;
     const post = getPostBySlug(slug);
     if (!post) return { title: "Post Not Found" };
 
+    const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://devtarun.com";
+    const postUrl = `${siteUrl}/blog/${category}/${slug}`;
+    const imageUrl = post.imageURL ? `${siteUrl}${post.imageURL}` : `${siteUrl}/opengraph-image`;
+
     return {
-        title: `${post.title} | Tarun Singh Blog`,
+        title: `${post.title} | DevTarun Blog`,
         description: post.description,
+        openGraph: {
+            title: post.title,
+            description: post.description,
+            type: "article",
+            url: postUrl,
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
+            publishedTime: post.date,
+            authors: ["Tarun Singh"],
+            section: post.category,
+            tags: post.tags,
+            siteName: "DevTarun Blog",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: post.title,
+            description: post.description,
+            images: [imageUrl],
+            creator: "@devtarun",
+            site: "@devtarun",
+        },
+        alternates: {
+            canonical: postUrl,
+        },
     };
 }
 

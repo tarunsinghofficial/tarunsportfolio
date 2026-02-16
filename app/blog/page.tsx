@@ -4,9 +4,33 @@ import { getAllPosts, getCategories, getFeaturedPosts } from "@/app/lib/mdx";
 import BlogLanding from "@/app/components/blog/BlogLanding";
 
 export const metadata: Metadata = {
-    title: "DevTarun Blog",
+    title: "DevTarun Blog | Technical Articles by Tarun Singh",
     description:
-        "Articles on web development, cloud, AI/ML, DevOps, and open source by Tarun Singh.",
+        "Explore articles on web development, cloud architecture, AI/ML, DevOps, and open source. Technical insights and tutorials by Tarun Singh.",
+    openGraph: {
+        title: "DevTarun Blog | Technical Articles by Tarun Singh",
+        description:
+            "Explore articles on web development, cloud architecture, AI/ML, DevOps, and open source. Technical insights and tutorials by Tarun Singh.",
+        url: "https://devtarun.com/blog",
+        siteName: "DevTarun Blog",
+        type: "website",
+        images: [
+            {
+                url: "https://devtarun.com/opengraph-image", // Fallback to main site image, or specific blog image if available
+                width: 1200,
+                height: 630,
+                alt: "DevTarun Blog",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "DevTarun Blog | Technical Articles by Tarun Singh",
+        description:
+            "Explore articles on web development, cloud architecture, AI/ML, DevOps, and open source. Technical insights and tutorials by Tarun Singh.",
+        images: ["https://devtarun.com/opengraph-image"],
+        creator: "@devtarun",
+    },
 };
 
 export default function BlogPage() {
