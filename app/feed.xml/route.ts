@@ -3,6 +3,8 @@ import { getAllPosts } from "@/app/lib/mdx";
 const BLOG_URL = process.env.NEXT_PUBLIC_BLOG_URL || "https://blog.devtarun.com";
 const MAIN_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://devtarun.com";
 
+export const dynamic = "force-static";
+
 export async function GET() {
     const posts = getAllPosts();
 
