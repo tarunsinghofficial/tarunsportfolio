@@ -34,6 +34,7 @@ export default async function Image() {
                         left: 0,
                         right: 0,
                         bottom: 0,
+                        display: "flex",
                         backgroundImage:
                             "radial-gradient(circle at 25px 25px, rgba(52, 211, 153, 0.1) 2%, transparent 0%), radial-gradient(circle at 75px 75px, rgba(52, 211, 153, 0.1) 2%, transparent 0%)",
                         backgroundSize: "100px 100px",
@@ -67,7 +68,7 @@ export default async function Image() {
                     >
                         &lt;/&gt;
                     </div>
-                    <div style={{ fontSize: 60, fontWeight: "bold", color: "white" }}>
+                    <div style={{ fontSize: 60, fontWeight: "bold", color: "white", display: "flex" }}>
                         dev<span style={{ color: "#34d399" }}>tarun</span>
                     </div>
                 </div>

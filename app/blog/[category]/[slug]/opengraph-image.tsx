@@ -64,6 +64,7 @@ export default async function Image({ params }: Props) {
                         left: 0,
                         right: 0,
                         bottom: 0,
+                        display: "flex",
                         backgroundImage:
                             "radial-gradient(circle at 25px 25px, rgba(52, 211, 153, 0.05) 2%, transparent 0%), radial-gradient(circle at 75px 75px, rgba(52, 211, 153, 0.05) 2%, transparent 0%)",
                         backgroundSize: "100px 100px",
