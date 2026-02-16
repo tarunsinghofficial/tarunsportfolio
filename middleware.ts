@@ -6,19 +6,15 @@ export function middleware(request: NextRequest) {
 
     // If accessing from blog.devtarun.com (or blog.localhost for local dev)
     if (host.startsWith("blog.")) {
-        // Root of blog subdomain → show /blog page
-        if (pathname === "/") {
-            return NextResponse.rewrite(new URL("/blog", request.url));
-        }
-
-        // Already has /blog prefix → let it through (internal rewrites)
+        // Redirect /blog* → strip /blog prefix for clean URLs
+        // blog.devtarun.com/blog → redirects to blog.devtarun.com/
+        // blog.devtarun.com/blog/ai-ml/post → redirects to blog.devtarun.com/ai-ml/post
         if (pathname.startsWith("/blog")) {
-            return NextResponse.next();
+            const cleanPath = pathname.replace(/^\/blog/, "") || "/";
+            return NextResponse.redirect(new URL(cleanPath, request.url), 308);
         }
 
         // Redirect non-blog portfolio routes back to main domain
-        // Hash fragments like /#about are handled client-side, but direct
-        // path routes like /about should redirect to the main domain
         const mainDomain = host.replace(/^blog\./, "");
         const portfolioRoutes = ["/about"];
         if (portfolioRoutes.includes(pathname)) {
@@ -27,10 +23,12 @@ export function middleware(request: NextRequest) {
             );
         }
 
-        // Everything else on blog subdomain → rewrite to /blog/*
-        // blog.devtarun.com/ai-ml → /blog/ai-ml
-        // blog.devtarun.com/ai-ml/some-post → /blog/ai-ml/some-post
-        return NextResponse.rewrite(new URL(`/blog${pathname}`, request.url));
+        // Rewrite everything else to /blog/* internally
+        // blog.devtarun.com/ → internally serves /blog
+        // blog.devtarun.com/ai-ml → internally serves /blog/ai-ml
+        // blog.devtarun.com/ai-ml/some-post → internally serves /blog/ai-ml/some-post
+        const internalPath = pathname === "/" ? "/blog" : `/blog${pathname}`;
+        return NextResponse.rewrite(new URL(internalPath, request.url));
     }
 
     return NextResponse.next();
