@@ -43,8 +43,14 @@ export default function Navbar() {
     }, [])
 
     const handleLinkClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault()
         setIsMobileMenuOpen(false)
+
+        // Allow external/subdomain links to proceed naturally
+        if (href.startsWith('http')) {
+            return
+        }
+
+        e.preventDefault()
 
         // If this is a section link (e.g. "#projects")
         if (href.startsWith('#')) {
