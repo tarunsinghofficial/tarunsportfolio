@@ -38,8 +38,65 @@ export default async function BlogPostPage({ params }: PageProps) {
 
     const relatedPosts = getRelatedPosts(post.slug, post.category, 3);
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.description,
+        image: post.imageURL ? `https://devtarun.com${post.imageURL}` : "https://devtarun.com/opengraph-image",
+        datePublished: post.date,
+        author: {
+            "@type": "Person",
+            "name": "Tarun Singh",
+            "url": "https://devtarun.com",
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://blog.devtarun.com/${post.category}/${post.slug}`
+        }
+    };
+
+    const breadcrumbJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Portfolio",
+                "item": "https://devtarun.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://blog.devtarun.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": post.category.replace(/-/g, " "),
+                "item": `https://blog.devtarun.com/${post.category}`
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "name": post.title,
+                "item": `https://blog.devtarun.com/${post.category}/${post.slug}`
+            }
+        ]
+    };
+
     return (
         <div className="min-h-screen bg-[#0a0a0a]">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+            />
             {/* Top nav */}
             <nav className="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-lg border-b border-white/[0.06]">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
