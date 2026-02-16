@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getPostBySlug } from "@/app/lib/mdx";
+import fs from "fs";
+import path from "path";
 
 // export const runtime = "edge";
 
@@ -41,6 +43,10 @@ export default async function Image({ params }: Props) {
             { ...size }
         );
     }
+
+    // Read the logo file
+    const logoData = await fs.promises.readFile(path.join(process.cwd(), "public", "logo.png"));
+    const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`;
 
     return new ImageResponse(
         (
@@ -89,24 +95,15 @@ export default async function Image({ params }: Props) {
                             justifyContent: "flex-start",
                         }}
                     >
-                        <div
+                        <img
+                            src={logoSrc}
+                            width="50"
+                            height="50"
                             style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                width: 50,
-                                height: 50,
-                                borderRadius: 12,
-                                backgroundColor: "rgba(52, 211, 153, 0.1)",
-                                border: "1px solid rgba(52, 211, 153, 0.2)",
                                 marginRight: 16,
-                                color: "#34d399",
-                                fontSize: 24,
-                                fontWeight: "bold",
+                                borderRadius: 12,
                             }}
-                        >
-                            &lt;/&gt;
-                        </div>
+                        />
                         <div
                             style={{
                                 fontSize: 24,

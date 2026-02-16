@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import fs from "fs";
+import path from "path";
 
 // export const runtime = "edge";
 
@@ -11,6 +13,10 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function Image() {
+    // Read the logo file
+    const logoData = await fs.promises.readFile(path.join(process.cwd(), "public", "logo.png"));
+    const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`;
+
     return new ImageResponse(
         (
             <div
@@ -49,25 +55,16 @@ export default async function Image() {
                         marginBottom: 20,
                     }}
                 >
-                    {/* Logo Mockup */}
-                    <div
+                    {/* Real Logo Image */}
+                    <img
+                        src={logoSrc}
+                        width="100"
+                        height="100"
                         style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            width: 80,
-                            height: 80,
-                            borderRadius: 20,
-                            border: "2px solid rgba(255,255,255,0.1)",
-                            backgroundColor: "rgba(255,255,255,0.05)",
                             marginRight: 20,
-                            color: "#34d399",
-                            fontSize: 40,
-                            fontWeight: "bold",
+                            borderRadius: 20,
                         }}
-                    >
-                        &lt;/&gt;
-                    </div>
+                    />
                     <div style={{ fontSize: 60, fontWeight: "bold", color: "white", display: "flex" }}>
                         dev<span style={{ color: "#34d399" }}>tarun</span>
                     </div>
