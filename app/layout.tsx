@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-
-const calSans = localFont({
-  src: "../public/fonts/CalSans-Regular.woff2"
-});
 
 export const metadata: Metadata = {
   title: "Tarun's Portfolio",
@@ -19,11 +14,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
       </head>
-      <body
-        className={`${calSans.className} antialiased`}
-      >
+      <body className="font-sans antialiased">
         {children}
       </body>
     </html>
