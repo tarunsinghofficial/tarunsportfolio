@@ -10,7 +10,7 @@ const navLinks = [
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
     { name: 'Videos', href: '#videos' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Blog', href: 'https://blog.devtarun.com' },
     { name: 'Testimonials', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
 ]

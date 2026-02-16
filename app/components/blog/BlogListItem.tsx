@@ -6,7 +6,7 @@ import type { BlogPostMeta } from "@/app/lib/mdx";
 export default function BlogListItem({ post }: { post: BlogPostMeta }) {
     return (
         <Link
-            href={`/blog/${post.category}/${post.slug}`}
+            href={`/${post.category}/${post.slug}`}
             className="group flex items-center gap-6 py-5 px-4 rounded-xl border border-transparent transition-all duration-300 hover:bg-white/5 hover:border-white/[0.06]"
         >
             {/* Title */}

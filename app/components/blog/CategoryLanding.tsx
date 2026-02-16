@@ -25,7 +25,7 @@ export default function CategoryLanding({
                 <Tabs
                     value={currentCategory}
                     onValueChange={(val) => {
-                        window.location.href = `/blog/${val}`;
+                        window.location.href = `/${val}`;
                     }}
                 >
                     <TabsList variant="line" className="bg-transparent flex-wrap h-auto gap-0">

@@ -20,7 +20,7 @@ export default function BlogPage() {
             <nav className="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-lg border-b border-white/[0.06]">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
                     <Link
-                        href="/"
+                        href="https://devtarun.com"
                         className="text-white font-bold text-lg hover:text-emerald-400 transition-colors"
                     >
                         ← Portfolio

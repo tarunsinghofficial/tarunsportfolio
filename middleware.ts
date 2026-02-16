@@ -1,14 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const BLOG_DOMAIN = "blog.devtarun.com";
+
 export function middleware(request: NextRequest) {
     const host = request.headers.get("host") || "";
     const { pathname } = request.nextUrl;
 
-    // If accessing from blog.devtarun.com (or blog.localhost for local dev)
+    // Main domain: redirect /blog* → blog.devtarun.com
+    if (!host.startsWith("blog.") && pathname.startsWith("/blog")) {
+        const cleanPath = pathname.replace(/^\/blog/, "") || "/";
+        return NextResponse.redirect(
+            new URL(`https://${BLOG_DOMAIN}${cleanPath}`),
+            308
+        );
+    }
+
+    // Blog subdomain
     if (host.startsWith("blog.")) {
         // Redirect /blog* → strip /blog prefix for clean URLs
-        // blog.devtarun.com/blog → redirects to blog.devtarun.com/
-        // blog.devtarun.com/blog/ai-ml/post → redirects to blog.devtarun.com/ai-ml/post
         if (pathname.startsWith("/blog")) {
             const cleanPath = pathname.replace(/^\/blog/, "") || "/";
             return NextResponse.redirect(new URL(cleanPath, request.url), 308);
@@ -26,7 +35,6 @@ export function middleware(request: NextRequest) {
         // Rewrite everything else to /blog/* internally
         // blog.devtarun.com/ → internally serves /blog
         // blog.devtarun.com/ai-ml → internally serves /blog/ai-ml
-        // blog.devtarun.com/ai-ml/some-post → internally serves /blog/ai-ml/some-post
         const internalPath = pathname === "/" ? "/blog" : `/blog${pathname}`;
         return NextResponse.rewrite(new URL(internalPath, request.url));
     }

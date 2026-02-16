@@ -23,7 +23,7 @@ export default function BlogHeroSection({
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Main featured post */}
             <Link
-                href={`/blog/${featured.category}/${featured.slug}`}
+                href={`/${featured.category}/${featured.slug}`}
                 className="group lg:col-span-2 relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/[0.04] transition-all duration-300 hover:border-emerald-400/30 hover:shadow-[0_0_40px_-5px_rgba(52,211,153,0.12)]"
             >
                 <div className="relative aspect-[16/8] sm:aspect-[16/7] overflow-hidden">
@@ -59,7 +59,7 @@ export default function BlogHeroSection({
                 {recent.slice(0, 2).map((post) => (
                     <Link
                         key={post.slug}
-                        href={`/blog/${post.category}/${post.slug}`}
+                        href={`/${post.category}/${post.slug}`}
                         className="group flex-1 relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/[0.04] transition-all duration-300 hover:border-emerald-400/30 hover:bg-white/[0.08]"
                     >
                         <div className="relative aspect-[16/9] overflow-hidden">

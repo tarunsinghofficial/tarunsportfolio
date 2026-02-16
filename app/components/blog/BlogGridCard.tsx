@@ -13,7 +13,7 @@ export default function BlogGridCard({ post }: { post: BlogPostMeta }) {
 
     return (
         <Link
-            href={`/blog/${post.category}/${post.slug}`}
+            href={`/${post.category}/${post.slug}`}
             className="group block rounded-2xl bg-white/5 backdrop-blur-md border border-white/[0.04] overflow-hidden transition-all duration-300 hover:border-emerald-400/30 hover:bg-white/[0.08] hover:shadow-[0_0_30px_-5px_rgba(52,211,153,0.15)]"
         >
             {/* Image */}

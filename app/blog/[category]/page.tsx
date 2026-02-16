@@ -33,7 +33,7 @@ export default async function CategoryPage({ params }: PageProps) {
             <nav className="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-lg border-b border-white/[0.06]">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
                     <Link
-                        href="/blog"
+                        href="/"
                         className="text-white font-medium text-sm hover:text-emerald-400 transition-colors flex items-center gap-2"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,7 +49,7 @@ export default async function CategoryPage({ params }: PageProps) {
             {/* Breadcrumb */}
             <div className="border-b border-white/[0.06]">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2 text-sm">
-                    <Link href="/blog" className="text-emerald-400 hover:text-emerald-300 transition-colors font-medium">
+                    <Link href="/" className="text-emerald-400 hover:text-emerald-300 transition-colors font-medium">
                         Blog
                     </Link>
                     <span className="text-zinc-600">/</span>
