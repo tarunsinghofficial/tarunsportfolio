@@ -13,6 +13,9 @@ Traditional observability doesn't work for AI. Logs tell you the request succeed
 
 If you're building apps with [LLMs](https://en.wikipedia.org/wiki/Large_language_model) (or integrating multiple AI models), monitoring status codes and error rates isn't enough anymore. You need to monitor the AI's behavior, cost, and quality. Let's look at why AI observability is different.
 
+## What is AI observability
+AI observability is the practice of monitoring, understanding, and debugging complex AI systems by analyzing telemetry data like metrics, logs, and traces. It transforms "black box" models into transparent, trustworthy systems by monitoring response quality, drift, and costs.  
+
 ## Why AI observability is actually different
 
 I spent years doing traditional backend observability. Logs, metrics, traces—the standard playbook. Then I started building with LLMs and realized none of it translated directly.
@@ -65,7 +68,7 @@ Approaches that work here are:
 - Sampling and manual review
 - Comparing against expected outputs for known test cases
 
-## Tools that actually help
+## AI observability tools that actually help
 
 I've tried a bunch of AI observability tools including [LangSmith](https://smith.langchain.com/), [LangFuse](https://langfuse.com/), [Helicone](https://helicone.ai/), [OpenLLMetry](https://www.traceloop.com/openllmetry), [DataDog](https://www.datadoghq.com/), [New Relic](https://www.newrelic.com/), [AppSignal](https://appsignal.com/). Here's what I found and when to use each.
 
