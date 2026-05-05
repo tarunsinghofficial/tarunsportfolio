@@ -39,9 +39,9 @@ export default function BlogPage() {
     const featuredPosts = getFeaturedPosts();
 
     return (
-        <div className="min-h-screen bg-[#0a0a0a]">
+        <div className="min-h-screen bg-[#1f1f1e]">
             {/* Navigation bar */}
-            <nav className="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-lg border-b border-white/[0.06]">
+            <nav className="sticky top-0 z-50 bg-[#1f1f1e]/80 backdrop-blur-lg border-b border-white/[0.06]">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
                     <Link
                         href="https://devtarun.com"
