@@ -29,14 +29,13 @@ export default function BlogLanding({
 
     // Featured post (first featured) and 2 recent posts for hero
     const heroFeatured = featuredPosts[0] || allPosts[0] || null;
-    const heroRecent = allPosts.filter((p) => p.slug !== heroFeatured?.slug).slice(0, 2);
+    const heroRecent = allPosts.filter((p) => p.slug !== heroFeatured?.slug).slice(0, 0);
 
     // Filter posts
     const filteredPosts = useMemo(() => {
         let posts = allPosts;
 
         // Exclude hero posts from main listing only if NOT filtering
-        // If filtering, we hide the hero section, so we should show all matching posts in the list
         if (!isFiltering) {
             const heroSlugs = new Set([heroFeatured?.slug, ...heroRecent.map((p) => p.slug)]);
             posts = posts.filter((p) => !heroSlugs.has(p.slug));
@@ -63,7 +62,7 @@ export default function BlogLanding({
     const hasMore = visibleCount < filteredPosts.length;
 
     return (
-        <div className="space-y-10">
+        <div className="space-y-8">
             {/* Hero Section */}
             {!isFiltering && <BlogHeroSection featured={heroFeatured} recent={heroRecent} />}
 
@@ -73,7 +72,7 @@ export default function BlogLanding({
                 <ViewToggle view={viewMode} onViewChange={setViewMode} />
             </div>
 
-            {/* Category Tabs (shadcn) */}
+            {/* Category Tabs */}
             <Tabs
                 value={selectedCategory}
                 onValueChange={(val) => {
@@ -81,10 +80,10 @@ export default function BlogLanding({
                     setVisibleCount(POSTS_PER_PAGE);
                 }}
             >
-                <TabsList variant="line" className="bg-transparent flex-wrap h-auto gap-0">
+                <TabsList variant="line" className="bg-transparent flex-wrap h-auto gap-0 border-b border-zinc-200">
                     <TabsTrigger
                         value="all"
-                        className="text-sm data-[state=active]:text-emerald-400 after:bg-emerald-400"
+                        className="text-sm text-zinc-400 data-[state=active]:text-zinc-800 data-[state=active]:font-semibold after:bg-zinc-900"
                     >
                         All
                     </TabsTrigger>
@@ -92,7 +91,7 @@ export default function BlogLanding({
                         <TabsTrigger
                             key={cat}
                             value={cat}
-                            className="text-sm capitalize data-[state=active]:text-emerald-400 after:bg-emerald-400"
+                            className="text-sm capitalize text-zinc-500 data-[state=active]:text-zinc-800 data-[state=active]:font-semibold after:bg-zinc-900"
                         >
                             {cat.replace("-", " ")}
                         </TabsTrigger>
@@ -102,10 +101,10 @@ export default function BlogLanding({
 
             {/* List header for list view */}
             {viewMode === "list" && visiblePosts.length > 0 && (
-                <div className="hidden md:flex items-center gap-6 px-4 text-xs uppercase tracking-wider text-zinc-500 border-b border-white/10 pb-2">
+                <div className="hidden md:flex items-center gap-6 px-4 text-xs uppercase tracking-wider text-zinc-400 border-b border-zinc-200 pb-2">
                     <div className="flex-1">Title</div>
                     <div className="w-36 shrink-0">Category</div>
-                    <div className="hidden lg:block w-48 shrink-0">Tags</div>
+                    <div className="hidden lg:block w-36 shrink-0">Author</div>
                     <div className="hidden sm:block w-24 shrink-0 text-right">Date</div>
                 </div>
             )}
@@ -119,20 +118,17 @@ export default function BlogLanding({
                         ))}
                     </div>
                 ) : (
-                    <div className="divide-y divide-white/[0.06]">
+                    <div className="divide-y divide-zinc-100 rounded-xl border border-zinc-200 bg-white overflow-hidden">
                         {visiblePosts.map((post) => (
                             <BlogListItem key={post.slug} post={post} />
                         ))}
                     </div>
                 )
             ) : (
-                // Only show empty state if:
-                // 1. We are filtering (so clearly nothing matched)
-                // 2. OR we are not filtering, but there are NO posts at all (even in hero)
                 (isFiltering || allPosts.length === 0) ? (
                     <div className="text-center py-16">
-                        <p className="text-zinc-500 text-lg">No posts found.</p>
-                        <p className="text-zinc-600 text-sm mt-1">Try a different search or category.</p>
+                        <p className="text-zinc-400 text-lg">No posts found.</p>
+                        <p className="text-zinc-300 text-sm mt-1">Try a different search or category.</p>
                     </div>
                 ) : null
             )}
@@ -142,7 +138,7 @@ export default function BlogLanding({
                 <div className="flex justify-center pt-4">
                     <button
                         onClick={() => setVisibleCount((c) => c + POSTS_PER_PAGE)}
-                        className="px-8 py-3 rounded-full border border-white/20 text-white text-sm font-medium transition-all duration-300 hover:bg-white/5 hover:border-white/30 active:scale-[0.98]"
+                        className="px-8 py-2.5 rounded-full border border-zinc-200 bg-white text-zinc-700 text-sm font-medium shadow-sm transition-all duration-200 hover:bg-zinc-50 hover:border-zinc-300 active:scale-[0.98]"
                     >
                         Load More
                     </button>

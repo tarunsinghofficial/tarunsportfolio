@@ -28,12 +28,12 @@ export default function CategoryLanding({
                         window.location.href = `/${val}`;
                     }}
                 >
-                    <TabsList variant="line" className="bg-transparent flex-wrap h-auto gap-0">
+                    <TabsList variant="line" className="bg-transparent flex-wrap h-auto gap-0 border-b border-zinc-200">
                         {categories.map((cat) => (
                             <TabsTrigger
                                 key={cat}
                                 value={cat}
-                                className="text-sm capitalize data-[state=active]:text-emerald-400 after:bg-emerald-400"
+                                className="text-sm capitalize text-zinc-500 data-[state=active]:text-zinc-900 data-[state=active]:font-semibold after:bg-zinc-900"
                             >
                                 {cat.replace(/-/g, " ")}
                             </TabsTrigger>
@@ -45,10 +45,10 @@ export default function CategoryLanding({
 
             {/* List header for list view */}
             {viewMode === "list" && posts.length > 0 && (
-                <div className="hidden md:flex items-center gap-6 px-4 text-xs uppercase tracking-wider text-zinc-500 border-b border-white/10 pb-2">
+                <div className="hidden md:flex items-center gap-6 px-4 text-xs uppercase tracking-wider text-zinc-400 border-b border-zinc-200 pb-2">
                     <div className="flex-1">Title</div>
                     <div className="w-36 shrink-0">Category</div>
-                    <div className="hidden lg:block w-48 shrink-0">Tags</div>
+                    <div className="hidden lg:block w-36 shrink-0">Author</div>
                     <div className="hidden sm:block w-24 shrink-0 text-right">Date</div>
                 </div>
             )}
@@ -62,7 +62,7 @@ export default function CategoryLanding({
                         ))}
                     </div>
                 ) : (
-                    <div className="divide-y divide-white/[0.06]">
+                    <div className="divide-y divide-zinc-100 rounded-xl border border-zinc-200 bg-white overflow-hidden">
                         {posts.map((post) => (
                             <BlogListItem key={post.slug} post={post} />
                         ))}
@@ -70,7 +70,7 @@ export default function CategoryLanding({
                 )
             ) : (
                 <div className="text-center py-16">
-                    <p className="text-zinc-500 text-lg">No posts in this category yet.</p>
+                    <p className="text-zinc-400 text-lg">No posts in this category yet.</p>
                 </div>
             )}
         </div>

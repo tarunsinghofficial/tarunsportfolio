@@ -122,7 +122,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     };
 
     return (
-        <div className="min-h-screen bg-[#1f1f1e]">
+        <div className="min-h-screen bg-white">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -132,11 +132,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
             {/* Top nav */}
-            <nav className="sticky top-0 z-50 bg-[#1f1f1e]/80 backdrop-blur-lg border-b border-white/[0.06]">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+            <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-zinc-200 shadow-sm">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
                     <Link
                         href="/"
-                        className="text-white font-medium text-sm hover:text-emerald-400 transition-colors flex items-center gap-2"
+                        className="font-semibold text-sm transition-colors flex items-center gap-1.5 hover:text-zinc-900"
+                        style={{ color: "#57534D" }}
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -151,17 +152,17 @@ export default async function BlogPostPage({ params }: PageProps) {
             </nav>
 
             {/* Breadcrumb */}
-            <div className="border-b border-white/[0.06]">
+            <div className="border-b border-zinc-100">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2 text-sm">
-                    <Link href="/" className="text-emerald-400 hover:text-emerald-300 transition-colors font-medium">
+                    <Link href="/" className="text-emerald-600 hover:text-emerald-700 transition-colors font-medium">
                         Blog
                     </Link>
-                    <span className="text-zinc-600">/</span>
-                    <Link href={`/${post.category}`} className="text-emerald-400/80 hover:text-emerald-300 transition-colors capitalize">
+                    <span style={{ color: "#57534D" }}>/</span>
+                    <Link href={`/${post.category}`} className="text-emerald-600 hover:text-emerald-700 transition-colors capitalize">
                         {post.category.replace(/-/g, " ")}
                     </Link>
-                    <span className="text-zinc-600">/</span>
-                    <span className="text-zinc-400 truncate">{post.title}</span>
+                    <span style={{ color: "#57534D" }}>/</span>
+                    <span className="text-zinc-500 truncate">{post.title}</span>
                 </div>
             </div>
 
@@ -171,7 +172,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     {/* Centered Image — respects natural size */}
                     {post.imageURL && (
                         <div className="mb-8">
-                            <div className="relative w-fit max-w-xs sm:max-w-sm rounded-2xl overflow-hidden border border-white/[0.06]">
+                            <div className="relative w-fit max-w-xs sm:max-w-sm rounded-2xl overflow-hidden border border-zinc-200">
                                 <Image
                                     src={post.imageURL}
                                     alt={post.title}
@@ -188,10 +189,10 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-8 lg:gap-14 mb-16">
                         {/* Left: Title + Description */}
                         <header>
-                            <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-white leading-[1.15] mb-5">
+                            <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-zinc-900 leading-[1.15] mb-5">
                                 {post.title}
                             </h1>
-                            <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-xl">
+                            <p className="text-base sm:text-lg leading-relaxed max-w-xl" style={{ color: "#57534D" }}>
                                 {post.description}
                             </p>
                         </header>
@@ -204,7 +205,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
 
                 {/* Full-width Divider */}
-                <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen border-t border-white/[0.06] mb-14" />
+                <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen border-t border-zinc-200 mb-14" />
 
                 {/* Content — centered, readable width */}
                 <div className="max-w-3xl mx-auto">
@@ -212,7 +213,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
 
                 {/* Full-width Divider */}
-                <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen border-t border-white/[0.06] my-14" />
+                <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen border-t border-zinc-200 my-14" />
 
                 {/* Author */}
                 <div className="max-w-3xl mx-auto">

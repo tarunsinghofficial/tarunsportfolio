@@ -15,77 +15,67 @@ export default function BlogHeroSection({
 
     const featuredDate = new Date(featured.date).toLocaleDateString("en-US", {
         year: "numeric",
-        month: "long",
+        month: "short",
         day: "numeric",
     });
 
     return (
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {/* Main featured post */}
+        <section className="mb-10">
+            {/* Featured Hero Card */}
             <Link
                 href={`/${featured.category}/${featured.slug}`}
-                className="group lg:col-span-2 relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/[0.04] transition-all duration-300 hover:border-emerald-400/30 hover:shadow-[0_0_40px_-5px_rgba(52,211,153,0.12)]"
+                className="group block rounded-2xl overflow-hidden border border-zinc-100 bg-white hover:shadow-xs transition-all duration-300 p-5"
             >
-                <div className="relative aspect-[16/8] sm:aspect-[16/7] overflow-hidden">
-                    {featured.imageURL ? (
-                        <Image
-                            src={featured.imageURL}
-                            alt={featured.title}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            priority
-                        />
-                    ) : (
-                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 via-teal-300/10 to-cyan-400/20" />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-                    <span className="inline-block text-xs uppercase tracking-wider text-emerald-400 font-medium mb-2">
-                        {featured.category.replace("-", " ")}
-                    </span>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white leading-tight mb-2 group-hover:text-emerald-300 transition-colors">
-                        {featured.title}
-                    </h2>
-                    <p className="text-sm text-zinc-300 line-clamp-2 max-w-2xl mb-3">
-                        {featured.description}
-                    </p>
-                    <span className="text-xs text-zinc-400">{featuredDate}</span>
+                <div className="grid grid-cols-1 lg:grid-cols-3">
+                    {/* Left: Text Content */}
+                    <div className="flex flex-col justify-center gap-5">
+                        <span className="text-xs text-zinc-400 font-medium tracking-wide">
+                            {featuredDate}
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 leading-tight group-hover:text-zinc-700 transition-colors">
+                            {featured.title}
+                        </h2>
+                        <p className="text-sm sm:text-base text-zinc-500 leading-relaxed line-clamp-3">
+                            {featured.description}
+                        </p>
+                        {/* Author */}
+                        <div className="flex items-center gap-2.5 mt-2">
+                            <div className="w-12 h-12 rounded-full bg-zinc-200 overflow-hidden shrink-0 ring-1 ring-zinc-200">
+                                <Image
+                                    src="/images/author/tarun_avatar.png"
+                                    alt="Tarun Singh"
+                                    width={32}
+                                    height={32}
+                                    className="object-cover w-full h-full"
+                                    onError={(e) => {
+                                        (e.currentTarget as HTMLImageElement).src = "/images/author/tarun_avatar.png";
+                                    }}
+                                />
+                            </div>
+                            <span className="text-sm font-medium text-zinc-600">Tarun Singh</span>
+                        </div>
+                    </div>
+
+                    {/* Right: Cover Image */}
+                    <div className="relative aspect-[4/3] lg:aspect-auto min-h-[220px] overflow-hidden rounded-2xl col-span-2">
+                        {featured.imageURL ? (
+                            <Image
+                                src={featured.imageURL}
+                                alt={featured.title}
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                priority
+                            />
+                        ) : (
+                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600" />
+                        )}
+                        {/* Featured badge */}
+                        <span className="absolute top-4 right-4 text-xs font-semibold bg-white text-zinc-800 px-3 py-1 rounded-full shadow-sm">
+                            Featured
+                        </span>
+                    </div>
                 </div>
             </Link>
-
-            {/* Side posts */}
-            <div className="flex flex-col gap-4">
-                {recent.slice(0, 2).map((post) => (
-                    <Link
-                        key={post.slug}
-                        href={`/${post.category}/${post.slug}`}
-                        className="group flex-1 relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/[0.04] transition-all duration-300 hover:border-emerald-400/30 hover:bg-white/[0.08]"
-                    >
-                        <div className="relative aspect-[16/9] overflow-hidden">
-                            {post.imageURL ? (
-                                <Image
-                                    src={post.imageURL}
-                                    alt={post.title}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-                            ) : (
-                                <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 via-teal-300/10 to-cyan-400/20" />
-                            )}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                        </div>
-                        <div className="absolute bottom-0 left-0 right-0 p-4">
-                            <span className="text-[10px] uppercase tracking-wider text-emerald-400/80 font-medium">
-                                {post.category.replace("-", " ")}
-                            </span>
-                            <h3 className="text-sm font-semibold text-white leading-snug mt-1 line-clamp-2 group-hover:text-emerald-300 transition-colors">
-                                {post.title}
-                            </h3>
-                        </div>
-                    </Link>
-                ))}
-            </div>
         </section>
     );
 }

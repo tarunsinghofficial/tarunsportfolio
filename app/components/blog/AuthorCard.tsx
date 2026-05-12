@@ -1,36 +1,41 @@
+"use client";
+
 import Image from "next/image";
 
 export default function AuthorCard() {
     return (
-        <section className="mt-12">
-            <div className="flex flex-col sm:flex-row items-start gap-6">
+        <section className="mt-12 p-6 rounded-2xl bg-zinc-50 border border-zinc-200">
+            <div className="flex flex-col sm:flex-row items-start gap-5">
                 {/* Avatar */}
-                <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-white/10 shrink-0">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-zinc-200 shrink-0">
                     <Image
-                        src="/logo.png"
+                        src="/images/author/tarun_avatar.png"
                         alt="Tarun Singh"
                         fill
                         className="object-cover"
+                        onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = "/logo.png";
+                        }}
                     />
                 </div>
 
                 {/* Info */}
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                     <div>
-                        <p className="text-xs uppercase tracking-wider text-zinc-500 mb-1">
+                        <p className="text-xs uppercase tracking-wider font-medium mb-0.5" style={{ color: "#57534D" }}>
                             Written by
                         </p>
-                        <h3 className="text-xl font-bold text-white">Tarun Singh</h3>
+                        <h3 className="text-lg font-bold text-zinc-900">Tarun Singh</h3>
                     </div>
-                    <p className="text-sm text-zinc-400 leading-relaxed max-w-lg">
+                    <p className="text-sm leading-relaxed max-w-lg" style={{ color: "#57534D" }}>
                         Software Development Engineer &amp; Technical Writer. I build interactive UIs with Next.js and React, and write about web development, cloud, and AI. Passionate about open source and developer experience.
                     </p>
-                    <div className="flex gap-4 pt-1">
+                    <div className="flex gap-3 pt-1">
                         <a
                             href="https://www.linkedin.com/in/tarunsingh24"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-zinc-500 hover:text-emerald-400 transition-colors"
+                            className="text-zinc-400 hover:text-emerald-600 transition-colors"
                             aria-label="LinkedIn"
                         >
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -41,7 +46,7 @@ export default function AuthorCard() {
                             href="https://github.com/tarunsinghofficial"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-zinc-500 hover:text-emerald-400 transition-colors"
+                            className="text-zinc-400 hover:text-emerald-600 transition-colors"
                             aria-label="GitHub"
                         >
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -52,8 +57,8 @@ export default function AuthorCard() {
                             href="https://twitter.com/itsTarun24"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-zinc-500 hover:text-emerald-400 transition-colors"
-                            aria-label="Twitter"
+                            className="text-zinc-400 hover:text-emerald-600 transition-colors"
+                            aria-label="Twitter / X"
                         >
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
