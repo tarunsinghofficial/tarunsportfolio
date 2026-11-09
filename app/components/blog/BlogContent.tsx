@@ -49,7 +49,7 @@ const components = {
     ),
     pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
         <pre
-            className="bg-zinc-50 border border-zinc-200 rounded-xl p-4 my-4 overflow-x-auto text-sm"
+            className="bg-zinc-50 text-zinc-800 border border-zinc-200 rounded-xl p-4 my-4 overflow-x-auto text-sm [&>code]:bg-transparent [&>code]:text-zinc-800 [&>code]:border-0 [&>code]:p-0"
             {...props}
         />
     ),
