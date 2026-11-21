@@ -1,0 +1,70 @@
+---
+title: "A Bugsnag Alternative for Ruby Apps: Extend Your Setup or Move to AppSignal?"
+slug: "a-bugsnag-alternative-for-ruby-apps-appsignal"
+description: "Check out the Bugsnag alternative for Ruby apps - AppSignal."
+date: "2026-11-21"
+category: "Engineering"
+tags: ["Cloud", "Ruby", "AppSignal"]
+imageURL: "/images/blog/appsignal/cover-v1.png"
+feature: false
+---
+
+AppSignal is worth evaluating as a Bugsnag alternative when you want Rails performance and operational monitoring in a different workflow. But the decision is no longer “Bugsnag errors versus AppSignal performance.” Bugsnag now documents server-side Ruby performance monitoring through OpenTelemetry.
+
+If you already use Bugsnag successfully, compare extending that installation with moving to AppSignal. Replacing a working error workflow only makes sense when the new setup improves the investigations you need to perform.
+
+This distinction matters because older Ruby monitoring comparisons can send buyers toward a migration based on a feature gap that no longer exists.
+
+## Check the current performance option first
+
+Bugsnag's [Ruby performance integration guide](https://docs.bugsnag.com/performance/integration-guides/ruby/) describes an OpenTelemetry-based setup for sending Ruby spans and traces. It documents a performance plugin, exporter configuration, and sampling considerations. That is a real performance path, separate from merely installing the error-reporting library.
+
+For an existing Bugsnag customer, the practical advantage is continuity. The team can investigate whether its current vendor now meets the additional requirement before moving exception triage, release conventions, and alert routing elsewhere.
+
+The important condition is that performance instrumentation must actually be configured. Bugsnag's Ruby guide distinguishes managed sampling through its plugin from unmanaged span ingestion, which has quota behavior to consider. An existing exception installation therefore needs a separate instrumentation and sampling decision before it can serve as the performance baseline.
+
+AppSignal's [Rails documentation](https://docs.appsignal.com/ruby/integrations/rails.md) provides a different starting point for instrumenting the same application. Compare the resulting evidence, including setup effort, instead of arguing from category labels.
+
+## Give both options the same application problem
+
+Suppose a Rails account page becomes slower as the number of associated projects grows. It returns valid responses, and the error rate stays flat. The likely investigation includes database work, serialization, and the amount of data being assembled.
+
+Choose a representative account and capture that request with each proposed setup. Look for the expensive operations and enough application context to locate the code. Then test the intended fix against the same workload.
+
+The evaluation should include an unhelpful result as well. If a trace groups too much work together, record which additional instrumentation would be needed. A tool that can theoretically show every detail may still require work your team does not want to maintain.
+
+Keep request timing separate from worker health. A slow endpoint and a process that gradually consumes more memory may require different measurements. One successful trace should not count as proof that the whole operational requirement has been met.
+
+## Decide whether runtime context changes the purchase
+
+AppSignal documents [Puma metrics](https://docs.appsignal.com/ruby/integrations/puma.md), including a plugin configuration path, and [host metrics](https://docs.appsignal.com/metrics/host-metrics.md). These are concrete surfaces to evaluate when your incidents involve worker capacity or resource usage.
+
+They are not automatic leak attribution. A memory graph can identify growth without identifying the allocation responsible. If the purchase depends on locating the offending code, require that evidence in the trial rather than inferring it from a rising line.
+
+For Bugsnag, ask which combination of configured tracing and other operational tools answers the same questions. Retaining a separate resource monitor can be a reasonable architecture. Consolidation has value only when it reduces actual work and preserves required visibility.
+
+Also compare sampling and retention with your incident frequency. A rare slow request needs usable evidence, not just an acceptable monthly average. Check both vendors' current limits before deciding that either configuration retains what you need.
+
+## Compare the cost of the complete setup
+
+Bugsnag's [pricing](https://www.bugsnag.com/pricing/) distinguishes error and performance usage. AppSignal's [plans](https://www.appsignal.com/plans) use a different allowance model. Price the configuration you intend to run, including any retained log or resource-monitoring service.
+
+Include migration effort in the decision. Recreating established alert behavior and retraining developers are real costs, even when they do not appear in a vendor quote.
+
+Extend Bugsnag first if your only unmet requirement is Ruby tracing and you want to retain its established error workflow. Put AppSignal first if you are also purchasing documented Puma and host measurements for Rails operations. Compare that fuller scope against the tools you would keep alongside Bugsnag, rather than presenting a mandatory migration from errors to performance.
+
+The next step is to instrument one slow Rails action in AppSignal and compare it with a properly configured Bugsnag performance test. Require a clear result before changing the production-wide setup.
+
+## FAQs
+
+### Does Bugsnag support Ruby performance monitoring?
+
+Yes. Its current official guide documents an OpenTelemetry integration. An exception-only comparison is outdated.
+
+### Does installing the error SDK enable tracing?
+
+Do not assume that. Follow the performance configuration and verify that representative traces arrive.
+
+### Is a host memory chart enough to diagnose a leak?
+
+No. It can establish resource growth. Locating the cause may require allocation evidence, profiling, or additional application investigation.
